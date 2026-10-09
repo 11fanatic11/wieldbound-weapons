@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wieldbound Weapons</title>
+<meta name="description" content="Every legendary weapon on the Wieldbound SMP, what it does, and how Rifts, the Hunt, Hunger and Strain work.">
+<meta property="og:title" content="Wieldbound Weapons">
+<meta property="og:description" content="Every legendary weapon on the Wieldbound SMP, what it does, and how Rifts, the Hunt, Hunger and Strain work.">
+<meta name="theme-color" content="#15110f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M26 3l3 3-15 15-3-3z' fill='%23e67e22'/%3E%3Cpath d='M9 17l6 6-2 2-2-1-4 4-2-2 4-4-1-2z' fill='%23c0392b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grenze:wght@600;700&family=JetBrains+Mono:wght@500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #15110f; --panel: #201a17; --panel-2: #2a221e; --line: #3a2f29;
+  --fg: #efe6df; --muted: #b3a296;
+  --ember: #e05a48; --forge: #e67e22; --rift: #c4a0ff; --gold: #f0c050; --tidal: #48c9b0;
+  --display: "Grenze", "Palatino Linotype", Georgia, serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f7f1ec; --panel: #fffaf6; --panel-2: #f3e9e1; --line: #e4d6cb; --fg: #241a15; --muted: #6e5a4d;
+    --ember: #a8301f; --forge: #b85d0d; --rift: #6b3fbf; --gold: #8a5f00; --tidal: #11735f;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f7f1ec; --panel: #fffaf6; --panel-2: #f3e9e1; --line: #e4d6cb; --fg: #241a15; --muted: #6e5a4d;
+  --ember: #a8301f; --forge: #b85d0d; --rift: #6b3fbf; --gold: #8a5f00; --tidal: #11735f;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+a { color: var(--forge); }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.1; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.9rem, 5vw, 2.5rem); }
+h3 { font-size: 1.5rem; }
+p { margin: 0; max-width: 68ch; }
+code, .cmd { font-family: var(--mono); font-size: 0.84em; background: var(--panel-2); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; white-space: nowrap; }
+.wrap { max-width: 1100px; margin: 0 auto; padding-inline: 16px; }
+.eyebrow { font: 600 0.78rem/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--forge); }
+.muted { color: var(--muted); }
+
+/* Nav */
+nav.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+nav.top .wrap { display: flex; align-items: center; gap: 18px; height: 56px; }
+nav.top .brand { font: 700 1.3rem/1 var(--display); color: var(--fg); text-decoration: none; white-space: nowrap; }
+nav.top .brand span { color: var(--forge); }
+nav.top ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+nav.top ul::-webkit-scrollbar { display: none; }
+nav.top a.link { display: block; padding: 6px 10px; border-radius: 6px; color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.92rem; white-space: nowrap; }
+nav.top a.link:hover, nav.top a.link:focus-visible { color: var(--fg); background: var(--panel); }
+
+/* Hero */
+header.hero { padding-block: 64px 40px; display: grid; gap: 18px; }
+.hero h1 { font-size: clamp(2.8rem, 9vw, 5rem); }
+.hero h1 .b { background: linear-gradient(90deg, var(--ember), var(--forge)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lede { font-size: 1.2rem; max-width: 62ch; }
+.basics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
+.basics div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.basics b { font-size: 1rem; }
+.basics span { font-size: 0.9rem; color: var(--muted); line-height: 1.45; }
+@media (max-width: 820px) { .basics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 440px) { .basics { grid-template-columns: minmax(0, 1fr); } }
+
+main section { padding-block: 48px; border-top: 1px solid var(--line); display: grid; gap: 20px; }
+.sec-head { display: grid; gap: 10px; }
+
+/* Weapon filters */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip { font: 600 0.9rem/1 var(--body); color: var(--muted); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.chip:hover { color: var(--fg); }
+.chip[aria-pressed="true"] { color: var(--bg); background: var(--forge); border-color: var(--forge); }
+.search { margin-left: auto; font: 400 0.95rem var(--body); color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; min-width: 0; width: 220px; }
+.search::placeholder { color: var(--muted); }
+@media (max-width: 560px) { .search { margin-left: 0; width: 100%; } }
+.empty { color: var(--muted); }
+
+/* Weapon cards */
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+.weapon { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid transparent; border-image: none; border-radius: 12px; padding: 18px; display: grid; gap: 12px; align-content: start; min-width: 0; position: relative; }
+.weapon::before { content: ""; position: absolute; inset: -1px -1px auto -1px; height: 3px; border-radius: 12px 12px 0 0; background: var(--g); }
+.weapon[hidden] { display: none; }
+.weapon .top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.weapon h3 { background: var(--g); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.weapon h3 a { color: inherit; text-decoration: none; }
+.tag { font: 600 0.72rem/1 var(--body); letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.tag.s2 { color: var(--rift); border-color: color-mix(in srgb, var(--rift) 45%, var(--line)); }
+.weapon .meta { font-size: 0.88rem; color: var(--muted); }
+.weapon .meta b { color: var(--fg); font-weight: 600; }
+.weapon .role { font-size: 0.98rem; }
+.weapon dl { margin: 0; display: grid; gap: 10px; }
+.weapon dt { font-weight: 700; display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: baseline; }
+.weapon dt .cd { font: 500 0.76rem/1 var(--mono); color: var(--muted); }
+.weapon dd { margin: 2px 0 0; color: var(--muted); font-size: 0.95rem; }
+.weapon dd strong { color: var(--fg); }
+.tiers { border-top: 1px solid var(--line); padding-top: 10px; display: grid; gap: 4px; font-size: 0.9rem; color: var(--muted); }
+.tiers b { color: var(--gold); font-family: var(--mono); font-size: 0.8rem; margin-right: 6px; }
+.counter { font-size: 0.9rem; color: var(--muted); }
+.counter b { color: var(--fg); }
+.g-grapnel { --g: linear-gradient(90deg, #8e9a9b, #e67e22); }
+.g-cinder { --g: linear-gradient(90deg, #e74c3c, #f39c12); }
+.g-deadbolt { --g: linear-gradient(90deg, #6c7a89, #b7c1c2); }
+.g-maul { --g: linear-gradient(90deg, #8a9697, #c9ced2); }
+.g-rift { --g: linear-gradient(90deg, #a35fc6, #c39bd3); }
+.g-bramble { --g: linear-gradient(90deg, #2ecc71, #1e8449); }
+.g-reaver { --g: linear-gradient(90deg, #5dade2, #aed6f1); }
+.g-null { --g: linear-gradient(90deg, #7f8c9d, #aab7b8); }
+.g-frost { --g: linear-gradient(90deg, #9fdcff, #3b9dd8); }
+.g-tide { --g: linear-gradient(90deg, #48c9b0, #1a8c74); }
+.g-hollow { --g: linear-gradient(90deg, #8fd3d6, #7a68b8); }
+.g-mirror { --g: linear-gradient(90deg, #cfd9e6, #8ea6c6); }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .g-mirror { --g: linear-gradient(90deg, #6f86a6, #3f5675); }
+  :root:not([data-theme="dark"]) .g-frost { --g: linear-gradient(90deg, #3b9dd8, #1f6fa3); }
+  :root:not([data-theme="dark"]) .g-maul, :root:not([data-theme="dark"]) .g-deadbolt, :root:not([data-theme="dark"]) .g-null { --g: linear-gradient(90deg, #4d5656, #7b8a8b); }
+  :root:not([data-theme="dark"]) .g-reaver, :root:not([data-theme="dark"]) .g-hollow { --g: linear-gradient(90deg, #2e86c1, #5b4b8a); }
+}
+
+/* Systems */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card h3 { font-size: 1.3rem; }
+ul.facts { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 68ch; }
+ul.facts li::marker { color: var(--muted); }
+.feature { border-left: 3px solid var(--accent, var(--forge)); padding-left: 18px; display: grid; gap: 14px; }
+.feature.rift { --accent: var(--rift); } .feature.rift .eyebrow { color: var(--rift); }
+.feature.hunt { --accent: var(--ember); } .feature.hunt .eyebrow { color: var(--ember); }
+.feature.hunger { --accent: var(--gold); } .feature.hunger .eyebrow { color: var(--gold); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; counter-reset: s; }
+.steps li { counter-increment: s; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.steps li::before { content: counter(s); font: 700 1.3rem/1 var(--display); color: var(--forge); }
+.steps b { font-size: 0.98rem; }
+.steps span { font-size: 0.87rem; color: var(--muted); line-height: 1.4; }
+@media (max-width: 820px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 440px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+.chat { background: #0c0a10; border-radius: 8px; padding: 12px 14px; font: 500 0.82rem/1.55 var(--mono); color: #cfc6bf; display: grid; gap: 2px; overflow-x: auto; }
+.chat .p { color: #e8833a; font-weight: 700; } .chat .y { color: #ffe066; } .chat .r { color: #ff6b6b; } .chat .g { color: #f0c050; } .chat .w { color: #fff; } .chat .v { color: #d9b8ff; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--panel); }
+td.num { font-family: var(--mono); font-size: 0.85rem; white-space: nowrap; }
+.strainbar { height: 12px; border-radius: 6px; background: linear-gradient(90deg, #3a2f29 0 40%, #8a6d2c 40% 60%, #a8501f 60% 80%, #b3261e 80% 100%); position: relative; margin-top: 4px; }
+.strain-labels { display: grid; grid-template-columns: 40fr 20fr 20fr 20fr; font: 500 0.75rem/1.4 var(--mono); color: var(--muted); margin-top: 6px; }
+.strain-labels span { border-left: 1px solid var(--line); padding-left: 6px; }
+footer { border-top: 1px solid var(--line); padding-block: 28px 48px; color: var(--muted); font-size: 0.9rem; display: grid; gap: 6px; }
+:focus-visible { outline: 2px solid var(--forge); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">Wield<span>bound</span></a>
+    <ul>
+      <li><a class="link" href="#weapons">Weapons</a></li>
+      <li><a class="link" href="#basics">Abilities</a></li>
+      <li><a class="link" href="#rifts">Rifts</a></li>
+      <li><a class="link" href="#hunt">The Hunt</a></li>
+      <li><a class="link" href="#hunger">Hunger</a></li>
+      <li><a class="link" href="#strain">Strain</a></li>
+      <li><a class="link" href="#commands">Commands</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+<header class="hero">
+  <span class="eyebrow">Season 2 field guide</span>
+  <h1>The <span class="b">Wieldbound</span> armoury</h1>
+  <p class="lede">Twelve legendary weapons, and only one of each exists. Here's what every one of them does, how you get one, and what happens once you're holding it.</p>
+  <div class="basics">
+    <div><b>One of each</b><span>Every legendary is unique. Whoever holds it is announced to the whole server.</span></div>
+    <div><b>Won at Rifts</b><span>Legendaries can't be crafted. They appear at a Rift once a day.</span></div>
+    <div><b>Hunted while held</b><span>Carry one and your location gets broadcast while a bounty grows on you.</span></div>
+    <div><b>Fed by kills</b><span>A weapon that goes days without a player kill weakens, then leaves you.</span></div>
+  </div>
+</header>
+
+<main>
+<section id="weapons" aria-labelledby="weapons-h">
+  <div class="sec-head">
+    <span class="eyebrow">The roster</span>
+    <h2 id="weapons-h">The twelve weapons</h2>
+    <p class="muted">Cooldowns and Strain costs are listed next to each ability. Numbers may be tuned during the season.</p>
+  </div>
+  <div class="filters" role="group" aria-label="Filter weapons">
+    <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+    <button class="chip" type="button" data-filter="melee" aria-pressed="false">Melee</button>
+    <button class="chip" type="button" data-filter="ranged" aria-pressed="false">Ranged</button>
+    <button class="chip" type="button" data-filter="s1" aria-pressed="false">Season 1</button>
+    <button class="chip" type="button" data-filter="s2" aria-pressed="false">New in Season 2</button>
+    <input class="search" type="search" placeholder="Search weapons or abilities" aria-label="Search weapons or abilities">
+  </div>
+
+  <div class="grid" id="weapon-grid">
+
+    <article class="weapon g-grapnel" id="grapnel" data-kind="ranged s1">
+      <div class="top"><h3><a href="#grapnel">The Grapnel</a></h3><span class="tag">Season 1</span></div>
+      <div class="meta"><b>Crossbow</b> · Skirmisher</div>
+      <p class="role">A chain-hook launcher for dragging people out of position and swinging across the map.</p>
+      <dl>
+        <div><dt><code>/ability1</code> Reel <span class="cd">8s cooldown · 20 Strain</span></dt>
+          <dd>Hook a player up to 32 blocks away and <strong>yank them toward you</strong>. Hitting the Grapnel user mid-reel snaps the chain and cancels the pull.</dd></div>
+        <div><dt><code>/ability2</code> Grapple <span class="cd">Tier II · 8s cooldown · 20 Strain</span></dt>
+          <dd>Fire at a block up to 32 blocks away and <strong>pull yourself to it</strong>.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>Unlocks Grapple.</div><div><b>T3</b>Players you Reel are Slowed for 3s when they land.</div></div>
+      <p class="counter"><b>Counter:</b> hit the user while they're reeling to snap the chain.</p>
+    </article>
+
+    <article class="weapon g-cinder" id="cindercleaver" data-kind="melee s1">
+      <div class="top"><h3><a href="#cindercleaver">The Cindercleaver</a></h3><span class="tag">Season 1</span></div>
+      <div class="meta"><b>Netherite sword</b> · Sharpness V, Fire Aspect II · Burn bruiser</div>
+      <p class="role">Every swing stokes the fire until the target explodes in flame.</p>
+      <dl>
+        <div><dt>Passive: Heat</dt>
+          <dd>Each hit adds a Heat stack. At <strong>5 stacks</strong> the target <strong>combusts</strong>: 3 hearts of damage, a 6s burn, and a splash of fire that hits everyone within 3 blocks for 2.5 hearts.</dd></div>
+        <div><dt><code>/ability1</code> Overburn <span class="cd">12s cooldown · 25 Strain</span></dt>
+          <dd>Pay <strong>2 of your own hearts</strong> to instantly combust a target within 4.5 blocks for <strong>6 hearts that ignore armour</strong>, plus the burn and splash.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>Max stacks 6, splash radius 4 blocks.</div><div><b>T3</b>Combustion also gives Weakness for 5s.</div></div>
+      <p class="counter"><b>Counter:</b> water and rain wash Heat away. A Frostbrand hit quenches it too.</p>
+    </article>
+
+    <article class="weapon g-deadbolt" id="deadbolt" data-kind="ranged s1">
+      <div class="top"><h3><a href="#deadbolt">The Deadbolt</a></h3><span class="tag">Season 1</span></div>
+      <div class="meta"><b>Crossbow</b> · Quick Charge V, Piercing IV · Marksman</div>
+      <p class="role">A sniper crossbow. It fires normal arrows like any crossbow, and doubles the duration of tipped-arrow effects.</p>
+      <dl>
+        <div><dt><code>/ability1</code> Piercing Shot <span class="cd">10s cooldown · 20 Strain</span></dt>
+          <dd>Charge for <strong>2.5 seconds</strong> (you glow while charging), then fire a bolt up to 40 blocks that deals <strong>5.5 hearts through armour</strong>.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T3</b>Piercing Shot also Slows the target for 3s.</div></div>
+      <p class="counter"><b>Counter:</b> the glow gives the charge away. Break line of sight.</p>
+    </article>
+
+    <article class="weapon g-maul" id="rampart-maul" data-kind="melee s1">
+      <div class="top"><h3><a href="#rampart-maul">The Rampart Maul</a></h3><span class="tag">Season 1</span></div>
+      <div class="meta"><b>Mace</b> · Density V · Tank</div>
+      <p class="role">A siege maul that scatters crowds and is hard to push around.</p>
+      <dl>
+        <div><dt>Passive: Immovable</dt>
+          <dd>30% knockback resistance while held. Its smash attack (a hit after falling) works once every <strong>30 seconds</strong>.</dd></div>
+        <div><dt><code>/ability1</code> Shockwave <span class="cd">14s cooldown · 25 Strain</span></dt>
+          <dd>Slam the ground: every enemy within <strong>6 blocks</strong> takes 2 hearts and is <strong>knocked away</strong>, harder the closer they are.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>Shockwave gives you Resistance I for 3s.</div><div><b>T3</b>Enemies hit are Slowed for 3s.</div></div>
+      <p class="counter"><b>Counter:</b> bait out the slam, then punish the cooldown.</p>
+    </article>
+
+    <article class="weapon g-rift" id="riftdirk" data-kind="melee s1">
+      <div class="top"><h3><a href="#riftdirk">The Riftdirk</a></h3><span class="tag">Season 1</span></div>
+      <div class="meta"><b>Netherite sword</b> · Sharpness V, Fire Aspect II · Assassin</div>
+      <p class="role">An unstable dagger for vanishing, blinking in, and bursting someone down.</p>
+      <dl>
+        <div><dt>Passive: Fade</dt>
+          <dd>Turn <strong>invisible</strong> while sneaking and standing still.</dd></div>
+        <div><dt><code>/ability1</code> Blink <span class="cd">9s cooldown · 20 Strain</span></dt>
+          <dd><strong>Teleport</strong> to where you're aiming, up to 15 blocks. Your next hit within 2s is a <strong>crit</strong> for +2 hearts.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>The crit window is 3s and the bonus is +2.5 hearts.</div><div><b>T3</b>Blinking onto a target Weakens them for 2s.</div></div>
+      <p class="counter"><b>Counter:</b> fragile once Blink is spent. Hollowbow arrows make them glow, even while invisible.</p>
+    </article>
+
+    <article class="weapon g-bramble" id="bramblestaff" data-kind="melee s1">
+      <div class="top"><h3><a href="#bramblestaff">The Bramblestaff</a></h3><span class="tag">Season 1</span></div>
+      <div class="meta"><b>Netherite hoe</b> · Zoner and support</div>
+      <p class="role">Thorned vines that lock a fight in place, with a healing grove later on.</p>
+      <dl>
+        <div><dt><code>/ability1</code> Overgrowth <span class="cd">16s cooldown · 25 Strain</span></dt>
+          <dd>Vines <strong>root every player within 4 blocks for 3s</strong>. Rooted players can still attack.</dd></div>
+        <div><dt><code>/ability2</code> Thicket <span class="cd">Tier II · 20s cooldown · 15 Strain</span></dt>
+          <dd>A healing patch: you and every player within 4 blocks get <strong>Regeneration II for 6s</strong>.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>Unlocks Thicket.</div><div><b>T3</b>Rooted enemies are also Poisoned for 5s.</div></div>
+      <p class="counter"><b>Counter:</b> no self-defence. Flank and burst the caster. Overgrowth shares a cooldown with Maelstrom and Nulling.</p>
+    </article>
+
+    <article class="weapon g-reaver" id="reaver" data-kind="melee s1">
+      <div class="top"><h3><a href="#reaver">The Reaver</a></h3><span class="tag">Season 1</span></div>
+      <div class="meta"><b>Netherite axe</b> · Sharpness V · Reaper</div>
+      <p class="role">A spectral reaping axe that feeds on everything dying around it.</p>
+      <dl>
+        <div><dt>Passive: Harvest</dt>
+          <dd>Whenever anything dies within <strong>8 blocks</strong>, players or mobs, you <strong>heal 2 hearts</strong>.</dd></div>
+        <div><dt><code>/ability1</code> Unshield <span class="cd">20s cooldown · 25 Strain</span></dt>
+          <dd><strong>Disables every shield</strong> within 15 blocks for 10 seconds.</dd></div>
+      </dl>
+      <p class="counter"><b>Counter:</b> keep fights away from crowds and mob farms so it has nothing to feed on.</p>
+    </article>
+
+    <article class="weapon g-null" id="nullblade" data-kind="melee s1">
+      <div class="top"><h3><a href="#nullblade">The Nullblade</a></h3><span class="tag">Season 1</span></div>
+      <div class="meta"><b>Netherite sword</b> · Sharpness V, Fire Aspect II · Anti-ability duelist</div>
+      <p class="role">A blade that turns other legendaries off.</p>
+      <dl>
+        <div><dt>Passive: Silence</dt>
+          <dd>Your hits <strong>Silence</strong> the target for 2s: they can't use any weapon ability. It can trigger once every 6s per target, so it's never a permanent lock.</dd></div>
+        <div><dt><code>/ability1</code> Nulling <span class="cd">25s cooldown · 20 Strain</span></dt>
+          <dd><strong>Freeze</strong> a player within 8 blocks in place and blind them with Darkness for <strong>3 seconds</strong>.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>Silence lasts 4s.</div></div>
+      <p class="counter"><b>Counter:</b> it has little burst of its own. Out-damage it, or kite it with ranged weapons.</p>
+    </article>
+
+    <article class="weapon g-frost" id="frostbrand" data-kind="melee s2">
+      <div class="top"><h3><a href="#frostbrand">The Frostbrand</a></h3><span class="tag s2">New in Season 2</span></div>
+      <div class="meta"><b>Netherite sword</b> · Sharpness V · Control duelist · Opposite of the Cindercleaver</div>
+      <p class="role">A blade of ever-winter. Every cut slows them, and the last one stops them cold.</p>
+      <dl>
+        <div><dt>Passive: Chill and Freeze</dt>
+          <dd>Each hit adds a Chill stack and Slows the target (up to Slowness III). At <strong>5 stacks</strong> they <strong>freeze solid</strong> in place for 1.5s, then can't be frozen again for 8s. Chill fades by one stack every 3s.</dd></div>
+        <div><dt><code>/ability1</code> Shatter <span class="cd">12s cooldown · 20 Strain</span></dt>
+          <dd>Break a target's Chill for damage that <strong>ignores armour</strong>: 1.5 hearts plus 1 per stack, or <strong>6 hearts on a frozen target</strong>. Range 5 blocks.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>Freezes at 4 stacks.</div><div><b>T3</b>Freezes last 2.5s, and Shatter leaves Slowness II for 3s.</div></div>
+      <p class="counter"><b>Counter:</b> fire and lava melt Chill instantly, including Fire Aspect hits.</p>
+    </article>
+
+    <article class="weapon g-tide" id="tidecaller" data-kind="melee s2">
+      <div class="top"><h3><a href="#tidecaller">The Tidecaller</a></h3><span class="tag s2">New in Season 2</span></div>
+      <div class="meta"><b>Trident</b> · Riptide III · Battlefield controller · Opposite of the Rampart Maul</div>
+      <p class="role">Where the Maul pushes, the Tide pulls. It can't be thrown, so you'll never lose it that way.</p>
+      <dl>
+        <div><dt>Passive: Tidebound</dt>
+          <dd>While you're in water or rain with it in hand: <strong>Speed I, Dolphin's Grace and Conduit Power</strong>. Riptide III launches you through water and rain.</dd></div>
+        <div><dt><code>/ability1</code> Maelstrom <span class="cd">16s cooldown · 25 Strain</span></dt>
+          <dd>Open a whirlpool up to 20 blocks away that <strong>drags enemies into its centre for 3s</strong> and slows them.</dd></div>
+        <div><dt><code>/ability2</code> Stormcall <span class="cd">Tier II · 25s cooldown · 20 Strain</span></dt>
+          <dd>Sparks mark a spot up to 25 blocks away, and <strong>1 second later lightning strikes</strong> for a guaranteed <strong>10 hearts</strong>, through armour, Protection, Resistance and shields. It sets the target on fire. Absorption hearts still soak it.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>Bigger Maelstrom, unlocks Stormcall.</div><div><b>T3</b>The Maelstrom collapses at the end, hitting everyone inside for 2.5 hearts.</div></div>
+      <p class="counter"><b>Counter:</b> both abilities are telegraphed. Walk out of the whirlpool and step off the sparks.</p>
+    </article>
+
+    <article class="weapon g-hollow" id="hollowbow" data-kind="ranged s2">
+      <div class="top"><h3><a href="#hollowbow">The Hollowbow</a></h3><span class="tag s2">New in Season 2</span></div>
+      <div class="meta"><b>Bow</b> · Power V, Flame · Hunter · Opposite of the Deadbolt</div>
+      <p class="role">A bow strung with a whisper. What it strikes can't hide, and what it hunts, it finds.</p>
+      <dl>
+        <div><dt>Passive: Haunt</dt>
+          <dd>Every arrow that hits makes the target <strong>glow through walls for 5s</strong>, even an invisible Riftdirk.</dd></div>
+        <div><dt><code>/ability1</code> Soul Volley <span class="cd">5 min cooldown · 20 Strain</span></dt>
+          <dd>For <strong>1 whole minute</strong>, every arrow you fire <strong>curves toward a target</strong> ahead of it. It prefers players and <strong>TNT minecarts</strong> (the flaming arrows set them off), and favours glowing targets.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>Haunt lasts 8s.</div><div><b>T3</b>Homing arrows pierce one target and Slow whoever they hit.</div></div>
+      <p class="counter"><b>Counter:</b> homing arrows turn gradually. Cover, shields and breaking line of sight still work.</p>
+    </article>
+
+    <article class="weapon g-mirror" id="mirrorblade" data-kind="melee s2">
+      <div class="top"><h3><a href="#mirrorblade">The Mirrorblade</a></h3><span class="tag s2">New in Season 2</span></div>
+      <div class="meta"><b>Netherite sword</b> · Sharpness V, Fire Aspect II · Reactive duelist · Opposite of the Nullblade</div>
+      <p class="role">A duelist's blade polished to a mirror. Strike it at the wrong moment and you strike yourself.</p>
+      <dl>
+        <div><dt><code>/ability1</code> Riposte <span class="cd">12s cooldown · 15 Strain</span></dt>
+          <dd>Open a <strong>1-second parry</strong> (you shimmer while it's open). The next melee hit on you is <strong>cancelled and turned back on the attacker</strong> with knockback, for 75% of their hit (up to 3.75 hearts). Your next hit within 3s then <strong>crits for +2 hearts</strong>.</dd></div>
+      </dl>
+      <div class="tiers"><div><b>T2</b>1.5s window, full reflected damage (up to 5 hearts), +2.5 heart counter, and parried arrows fire back at the shooter.</div><div><b>T3</b>Whoever you parry is Silenced for 3s.</div></div>
+      <p class="counter"><b>Counter:</b> don't swing into the shimmer. Abilities like Stormcall can't be parried.</p>
+    </article>
+
+  </div>
+  <p class="empty" id="no-results" hidden>No weapons match that search.</p>
+</section>
+
+<section id="basics" aria-labelledby="basics-h">
+  <div class="sec-head">
+    <span class="eyebrow">Using a legendary</span>
+    <h2 id="basics-h">Abilities, tiers and awakening</h2>
+  </div>
+  <div class="cols">
+    <div class="card">
+      <h3>Using abilities</h3>
+      <ul class="facts">
+        <li>Hold the weapon and type <span class="cmd">/ability1</span> or <span class="cmd">/ability2</span>. <strong>Bind them to keys</strong> with a keybind or macro mod so you can use them mid-fight.</li>
+        <li>Bows, crossbows and the trident still work normally on right-click.</li>
+        <li>Every ability has its own cooldown, shown on your action bar if you try too early.</li>
+        <li>Each use also adds <a href="#strain">Strain</a>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Awakening (Tiers)</h3>
+      <ul class="facts">
+        <li>Every weapon starts at <strong>Tier I</strong>, reaches <strong>Tier II at 5 player kills</strong> and <strong>Tier III at 10</strong>.</li>
+        <li>Kills are stored <strong>on the weapon</strong>, so its power goes with it when it changes hands. Taking a Tier III weapon off someone is a huge prize.</li>
+        <li>A kill counts for every legendary you're carrying.</li>
+        <li><strong>No farming:</strong> killing the same player again within an hour gives no awakening progress (it still feeds the weapon).</li>
+        <li>Carrying the <strong>Dragon Egg</strong> puts all your weapons at Tier III while you hold it.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Indestructible</h3>
+      <ul class="facts">
+        <li>Legendaries never break, never despawn, and survive fire, lava, cactus and explosions.</li>
+        <li>They can't be enchanted, renamed or disenchanted.</li>
+        <li>If one falls into the void it goes back to its last holder. Mobs and hoppers can't pick them up.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Finding weapons</h3>
+      <ul class="facts">
+        <li><span class="cmd">/whohas [weapon]</span> shows who holds each weapon, or which are still waiting in the Rifts.</li>
+        <li><span class="cmd">/whereis [weapon]</span> finds a weapon lying on the ground.</li>
+        <li>Whenever a weapon changes hands, the whole server is told.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="rifts" aria-labelledby="rifts-h">
+  <div class="feature rift">
+    <span class="eyebrow">How you get one</span>
+    <h2 id="rifts-h">Rifts</h2>
+    <p>Legendaries have no recipes. They <strong>manifest at Rifts</strong>, and every weapon starts sealed away, so all twelve have to come out of a Rift. Type <span class="cmd">/rift</span> to see when the next one opens and how many legendaries are left.</p>
+    <ol class="steps">
+      <li><b>Warning</b><span>Chat warnings 1 hour, 15 minutes and 5 minutes before a Rift opens. One opens every day.</span></li>
+      <li><b>It opens</b><span>Coordinates go out in chat, on screen and on a boss bar counting down 10 minutes.</span></li>
+      <li><b>Safe zone</b><span>No PvP within 30 blocks of the Rift during the countdown. Get in position.</span></li>
+      <li><b>It lands</b><span>Lightning strikes, the weapon drops sealed, Rift Wardens spawn and PvP is back on.</span></li>
+      <li><b>Claim it</b><span>Kill the Wardens to break the seal. The first player to pick it up keeps it.</span></li>
+    </ol>
+    <ul class="facts">
+      <li><strong>Rift Wardens:</strong> two Iron Golems and two Wither Skeletons with Strength III. They go straight for the nearest player and drop nothing.</li>
+      <li>The seal also breaks on its own after 3 minutes, and the Wardens vanish after 5.</li>
+      <li>Rifts never open inside land claims.</li>
+    </ul>
+    <div class="chat" aria-label="Example Rift messages">
+      <div><span class="p">[Wieldbound]</span> <span class="v">✦ A Rift tears open at</span> <span class="w">1420, 71, -388</span> <span class="v">in the Overworld! The</span> <span class="w">Tidecaller</span> <span class="v">manifests in</span> <span class="w">10m</span><span class="v">. PvP is off within</span> <span class="w">30 blocks</span> <span class="v">of it until then.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="hunt" aria-labelledby="hunt-h">
+  <div class="feature hunt">
+    <span class="eyebrow">Once you hold one</span>
+    <h2 id="hunt-h">The Hunt</h2>
+    <p>Carrying a legendary in your inventory makes you <strong>Hunted</strong>. The longer you hold it, the bigger the reward for whoever takes you down, and the easier you are to find.</p>
+    <ul class="facts">
+      <li>Every <strong>10 minutes</strong>, the server announces roughly where each holder is.</li>
+      <li>Your bounty gains a <strong>★</strong> for every 30 minutes you're online carrying a legendary, up to 10★.</li>
+      <li>Whoever kills you claims it: <strong>2 diamonds and 2 XP levels per ★</strong>, plus whatever you drop.</li>
+      <li>Your bounty resets when you die or stop carrying a legendary. Stashing it in your ender chest hides you, but then it can't be fed (see Hunger).</li>
+      <li><span class="cmd">/hunt</span> shows everyone currently Hunted, their stars, and where they were last sensed.</li>
+    </ul>
+    <h3>Bigger bounty, sharper location</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bounty</th><th>How accurate the location broadcast is</th></tr></thead>
+        <tbody>
+          <tr><td class="num">0★</td><td>Within about 100 blocks</td></tr>
+          <tr><td class="num">3★</td><td>Within 70 blocks</td></tr>
+          <tr><td class="num">5★</td><td>Within 50 blocks</td></tr>
+          <tr><td class="num">9★</td><td>Within 10 blocks</td></tr>
+          <tr><td class="num">10★</td><td><strong>Exact X, Y and Z coordinates</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chat" aria-label="Example Hunt messages">
+      <div><span class="p">[Wieldbound]</span> <span class="r">☠</span> The bearer of <span class="w">The Tidecaller</span> <span class="g">★★★</span> was sensed near <span class="y">X≈1330, Z≈-210 (Overworld, within 70 blocks)</span>.</div>
+      <div><span class="p">[Wieldbound]</span> <span class="r">☠</span> The bearer of <span class="w">The Reaver</span> <span class="g">★★★★★★★★★★</span> was <span class="r">pinpointed</span> at <span class="y">X 412, Y 71, Z -1388 (Overworld, exact)</span>.</div>
+    </div>
+  </div>
+</section>
+
+<section id="hunger" aria-labelledby="hunger-h">
+  <div class="feature hunger">
+    <span class="eyebrow">Keep it fed</span>
+    <h2 id="hunger-h">Hunger</h2>
+    <p>Legendaries <strong>hunger for kills</strong>. Any player kill while you're carrying one feeds it. Hiding a weapon in a chest doesn't stop the clock: it keeps starving, and will already have starved by the time you take it out.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Days without a kill</th><th>What happens</th></tr></thead>
+        <tbody>
+          <tr><td class="num">0 to 3</td><td><strong>Sated.</strong> All good.</td></tr>
+          <tr><td class="num">3</td><td>It <strong>loses a tier</strong>.</td></tr>
+          <tr><td class="num">6</td><td>It loses another tier (it never drops below Tier I).</td></tr>
+          <tr><td class="num">9</td><td><strong>Restless.</strong> While you carry it you have Hunger II and Weakness I, and it whispers to you in chat.</td></tr>
+          <tr><td class="num">12</td><td>It <strong>abandons you</strong>: it vanishes, the server is told, and it goes back to the Rifts.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="facts">
+      <li>One kill resets it to Sated, and any lost tiers come straight back.</li>
+      <li>Picking up a weapon from someone else always gives you at least 24 hours before it can lose a tier.</li>
+      <li>You get a warning 12 hours before each step, and the weapon's tooltip shows its Hunger at all times.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="strain" aria-labelledby="strain-h">
+  <div class="sec-head">
+    <span class="eyebrow">Don't spam</span>
+    <h2 id="strain-h">Strain</h2>
+    <p>Every ability use adds <strong>Strain</strong> (0 to 100), shown next to each ability above. It drains by 1 per second once you've gone 3 seconds without using an ability. Lean on your abilities too hard and they'll hurt you.</p>
+  </div>
+  <div class="card">
+    <div class="strainbar" role="img" aria-label="Strain thresholds: 40 Slowness, 60 Weakness, 80 Mining Fatigue, 100 Overload"></div>
+    <div class="strain-labels"><span>0</span><span>40: Slowness I</span><span>60: + Weakness I</span><span>80: + Mining Fatigue II</span></div>
+    <p><strong>At 100 you Overload:</strong> Wither II for 4 seconds and your weapon's abilities are locked for 8 seconds. Overloading in the middle of a fight can kill you.</p>
+  </div>
+</section>
+
+<section id="commands" aria-labelledby="commands-h">
+  <div class="sec-head">
+    <span class="eyebrow">Reference</span>
+    <h2 id="commands-h">Commands and other rules</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>/ability1</code> <code>/ability2</code></td><td>Use your held weapon's abilities</td></tr>
+        <tr><td><code>/rift</code></td><td>When the next Rift opens, the active Rift, and legendaries left</td></tr>
+        <tr><td><code>/hunt</code></td><td>Everyone being Hunted, their bounty, and where they were last sensed</td></tr>
+        <tr><td><code>/whohas [weapon]</code></td><td>Who holds each weapon, or which are still in the Rifts</td></tr>
+        <tr><td><code>/whereis [weapon]</code></td><td>Find a weapon lying on the ground</td></tr>
+        <tr><td><code>/msg</code> <code>/r</code></td><td>Private messages</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cols">
+    <div class="card">
+      <h3>Combat</h3>
+      <ul class="facts">
+        <li>Hitting or being hit puts you <strong>in combat for 30 seconds</strong>. Logging out in combat gets you a warning, and doing it repeatedly can earn a temporary ban.</li>
+        <li>In combat, elytras don't work and ender pearls have a 15-second cooldown.</li>
+        <li>In combat you can riptide at most twice every 20 seconds.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Maces and spears</h3>
+      <ul class="facts">
+        <li>Normal maces can be crafted but <strong>not enchanted</strong>, and their smash attack works once every <strong>40 seconds</strong>.</li>
+        <li>Lunge spears get 3 lunges, then a 20-second cooldown. Unused lunges refresh after 20 seconds without lunging.</li>
+        <li>Golden apples are cheaper: 4 gold ingots in a plus around an apple.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>Wieldbound SMP, Season 2. Numbers may change during the season as weapons are balanced.</span>
+</footer>
+</div>
+
+<script>
+(function () {
+  var chips = document.querySelectorAll('.chip');
+  var search = document.querySelector('.search');
+  var cards = document.querySelectorAll('.weapon');
+  var empty = document.getElementById('no-results');
+  var filter = 'all';
+  function apply() {
+    var q = (search.value || '').trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function (c) {
+      var kindOk = filter === 'all' || c.dataset.kind.split(' ').indexOf(filter) !== -1;
+      var textOk = !q || c.textContent.toLowerCase().indexOf(q) !== -1;
+      c.hidden = !(kindOk && textOk);
+      if (!c.hidden) shown++;
+    });
+    empty.hidden = shown !== 0;
+  }
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      filter = chip.dataset.filter;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      apply();
+    });
+  });
+  search.addEventListener('input', apply);
+})();
+</script>
+</body>
+</html>
