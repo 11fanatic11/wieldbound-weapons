@@ -7,6 +7,9 @@
 <meta name="description" content="Every legendary weapon on the Wieldbound SMP, what it does, and how Rifts, the Hunt, Hunger and Strain work.">
 <meta property="og:title" content="Wieldbound Weapons">
 <meta property="og:description" content="Every legendary weapon on the Wieldbound SMP, what it does, and how Rifts, the Hunt, Hunger and Strain work.">
+<meta property="og:image" content="https://weapons.wieldbound.xyz/og.png">
+<meta property="og:url" content="https://weapons.wieldbound.xyz/">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#15110f">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M26 3l3 3-15 15-3-3z' fill='%23e67e22'/%3E%3Cpath d='M9 17l6 6-2 2-2-1-4 4-2-2 4-4-1-2z' fill='%23c0392b'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,8 +53,8 @@ code, .cmd { font-family: var(--mono); font-size: 0.84em; background: var(--pane
 /* Nav */
 nav.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 nav.top .wrap { display: flex; align-items: center; gap: 18px; height: 56px; }
-nav.top .brand { font: 700 1.3rem/1 var(--display); color: var(--fg); text-decoration: none; white-space: nowrap; }
-nav.top .brand span { color: var(--forge); }
+nav.top .brand { display: block; flex: none; line-height: 0; }
+nav.top .brand img { height: 30px; width: auto; display: block; }
 nav.top ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
 nav.top ul::-webkit-scrollbar { display: none; }
 nav.top a.link { display: block; padding: 6px 10px; border-radius: 6px; color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.92rem; white-space: nowrap; }
@@ -59,7 +62,8 @@ nav.top a.link:hover, nav.top a.link:focus-visible { color: var(--fg); backgroun
 
 /* Hero */
 header.hero { padding-block: 64px 40px; display: grid; gap: 18px; }
-.hero h1 { font-size: clamp(2.8rem, 9vw, 5rem); }
+.hero .logo { width: min(560px, 100%); height: auto; display: block; filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35)); }
+.hero h1 { font-size: clamp(2.2rem, 7vw, 3.6rem); }
 .hero h1 .b { background: linear-gradient(90deg, var(--ember), var(--forge)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lede { font-size: 1.2rem; max-width: 62ch; }
 .basics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
@@ -163,7 +167,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px 48px; color: var
 <body>
 <nav class="top" aria-label="Sections">
   <div class="wrap">
-    <a class="brand" href="#top">Wield<span>bound</span></a>
+    <a class="brand" href="#top"><img src="logo.png" alt="Wieldbound SMP" width="1026" height="263"></a>
     <ul>
       <li><a class="link" href="#weapons">Weapons</a></li>
       <li><a class="link" href="#basics">Abilities</a></li>
@@ -178,8 +182,9 @@ footer { border-top: 1px solid var(--line); padding-block: 28px 48px; color: var
 
 <div class="wrap" id="top">
 <header class="hero">
+  <img class="logo" src="logo.png" alt="Wieldbound SMP" width="1026" height="263">
   <span class="eyebrow">Season 2 field guide</span>
-  <h1>The <span class="b">Wieldbound</span> armoury</h1>
+  <h1>The <span class="b">armoury</span></h1>
   <p class="lede">Twelve legendary weapons, and only one of each exists. Here's what every one of them does, how you get one, and what happens once you're holding it.</p>
   <div class="basics">
     <div><b>One of each</b><span>Every legendary is unique. Whoever holds it is announced to the whole server.</span></div>
